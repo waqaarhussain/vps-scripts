@@ -18,4 +18,12 @@ Temporarily restores DNS so GitHub and Ubuntu package servers can be reached, th
 sudo rm -f /etc/resolv.conf && printf 'nameserver 1.1.1.1\nnameserver 8.8.8.8\n' | sudo tee /etc/resolv.conf >/dev/null && { command -v curl >/dev/null 2>&1 || { sudo apt-get update -y && sudo apt-get install -y curl; }; } && curl -fsSL https://raw.githubusercontent.com/waqaarhussain/vps-scripts/main/ubuntu-dns-fix/install.sh -o /tmp/ubuntu-dns-fix.sh && sudo bash /tmp/ubuntu-dns-fix.sh
 ```
 
+## Trading Stats Dashboard
+
+Installs the Trading Stats dashboard, Nginx configuration, service, database, and local reset/week/month helper commands. The installer securely prompts for the existing dashboard secret.
+
+```bash
+{ command -v curl >/dev/null 2>&1 || { sudo apt-get update -y && sudo apt-get install -y curl; }; } && curl -fsSL https://raw.githubusercontent.com/waqaarhussain/vps-scripts/main/trading-stats-dashboard/install.sh -o /tmp/trading-stats-dashboard-install.sh && sudo bash /tmp/trading-stats-dashboard-install.sh
+```
+
 The repository must remain public for these unauthenticated installation commands to work.
