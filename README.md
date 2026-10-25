@@ -8,7 +8,6 @@ A collection of standalone installers for fresh Ubuntu VPS deployments. Each fol
 | --- | --- |
 | `sni-proxy` | Install an Nginx SNI forwarding proxy on TCP port 443 |
 | `ubuntu-dns-fix` | Repair broken VPS DNS and make the resolver settings persistent |
-| `trading-stats-dashboard` | Install the Trading Stats Dashboard and its supporting services |
 
 ## Requirements
 
@@ -80,38 +79,19 @@ getent hosts archive.ubuntu.com
 getent hosts github.com
 ```
 
-## Trading Stats Dashboard
-
-Installs the Trading Stats Dashboard, its database, application service, Nginx configuration and local helper commands.
-
-The installer asks for the dashboard secret through a hidden terminal prompt. The secret is written only to the VPS environment file and is not stored in this repository.
-
-Run:
-
-```bash
-{ command -v curl >/dev/null 2>&1 || { sudo apt-get update -y && sudo apt-get install -y curl; }; } && curl -fsSL https://raw.githubusercontent.com/waqaarhussain/vps-scripts/main/trading-stats-dashboard/install.sh -o /tmp/trading-stats-dashboard-install.sh && sudo bash /tmp/trading-stats-dashboard-install.sh
-```
-
-When prompted, type the dashboard secret and press Enter. Nothing is displayed while the secret is being entered.
-
-The installation includes the dashboard's local reset, week and month helpers.
-
 ## Repository layout
 
 ```text
 vps-scripts/
 ├── sni-proxy/
 │   └── install.sh
-├── ubuntu-dns-fix/
-│   └── install.sh
-└── trading-stats-dashboard/
+└── ubuntu-dns-fix/
     └── install.sh
 ```
 
 ## Security
 
 - No private keys, API tokens or proxy credentials should be committed here.
-- The Trading Stats Dashboard secret is collected during installation.
 - Review firewall changes before combining these installers with an existing server.
 - Keep SSH access allowed before enabling or changing UFW.
 - Use these installers only for systems you control.
